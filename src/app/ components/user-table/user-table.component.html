@@ -1,0 +1,13 @@
+<p>user-table works!</p>
+
+<dx-data-grid
+  [dataSource]="dataSource"
+  [showBorders]="true"
+  [columnAutoWidth]="true">
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxi-column dataField="name"></dxi-column>
+  <dxi-column dataField="age" dataType="number"></dxi-column>
+  <dxi-column dataField="email"></dxi-column>
+</dx-data-grid>
+
+<p>user-table works!</p>
