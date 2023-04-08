@@ -11,6 +11,8 @@ import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import { AboutComponent } from './ components/about/about.component';
 import {PersistanceService} from "./services/persistance.service";
+import { FilterComponent } from './ components/filter/filter.component';
+import {FormsModule} from "@angular/forms";
 
 const routes: Routes = [
   { path: '', component: UserTableComponent },
@@ -22,7 +24,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     UserTableComponent,
-    AboutComponent
+    AboutComponent,
+    FilterComponent
   ],
   imports: [
     HttpClientModule,
@@ -32,7 +35,8 @@ const routes: Routes = [
     DxDataGridModule,
     DxTemplateModule,
     DxBulletModule,
-    DxTreeListModule
+    DxTreeListModule,
+    FormsModule
   ],
   providers: [UserService, PersistanceService],
   bootstrap: [AppComponent],

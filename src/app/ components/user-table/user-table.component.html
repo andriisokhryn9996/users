@@ -1,4 +1,6 @@
 <p>user-table works!</p>
+<app-filter (filterEmmit)="filterEmmit($event)"></app-filter>
+
 <dx-data-grid [dataSource]="usersList" [showBorders]="true" [columnAutoWidth]="true">
   <dxo-paging [pageSize]="25"></dxo-paging>
   <dxi-column dataField="name" [calculateDisplayValue]="fullName"></dxi-column>
