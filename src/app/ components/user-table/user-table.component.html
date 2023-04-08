@@ -1,6 +1,6 @@
 <p>user-table works!</p>
 <dx-data-grid [dataSource]="usersList" [showBorders]="true" [columnAutoWidth]="true">
-  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-paging [pageSize]="25"></dxo-paging>
   <dxi-column dataField="name" [calculateDisplayValue]="fullName"></dxi-column>
   <dxi-column dataField="gender" dataType="number"></dxi-column>
   <dxi-column dataField="cell"></dxi-column>
@@ -15,3 +15,5 @@
 
   </div>
 </dx-data-grid>
+
+
