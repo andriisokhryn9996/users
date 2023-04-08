@@ -11,7 +11,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: UserTableComponent },
   { path: 'about', component: UserTableComponent },
 ];
 

@@ -8,18 +8,24 @@ import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-es
   styleUrls: ['./user-table.component.css']
 })
 export class UserTableComponent implements OnInit{
-  dataSource: any[] = [
-    { name: 'John Doe', age: 33, email: 'johndoe@example.com' },
-    { name: 'Jane Smith', age: 27, email: 'janesmith@example.com' },
-    { name: 'Bob Johnson', age: 55, email: 'bobjohnson@example.com' }
-  ];
+  usersList: any[] = []
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit() {
-    this.userService.getUsers(1).subscribe(e => {
-      console.log(e)
+    this.userService.getUsers(1).subscribe(data => {
+      this.usersList = data.results
+      console.log(this.usersList)
     })
   }
+
+  fullName(rowData: any): string{
+    return `${rowData.name.first} ${rowData.name.last}`;
+  }
+
+  getPicture(rowData: any): string {
+    return rowData.picture.large
+  }
+
 }

@@ -1,13 +1,17 @@
 <p>user-table works!</p>
-
-<dx-data-grid
-  [dataSource]="dataSource"
-  [showBorders]="true"
-  [columnAutoWidth]="true">
+<dx-data-grid [dataSource]="usersList" [showBorders]="true" [columnAutoWidth]="true">
   <dxo-paging [pageSize]="10"></dxo-paging>
-  <dxi-column dataField="name"></dxi-column>
-  <dxi-column dataField="age" dataType="number"></dxi-column>
-  <dxi-column dataField="email"></dxi-column>
-</dx-data-grid>
+  <dxi-column dataField="name" [calculateDisplayValue]="fullName"></dxi-column>
+  <dxi-column dataField="gender" dataType="number"></dxi-column>
+  <dxi-column dataField="cell"></dxi-column>
 
-<p>user-table works!</p>
+  <dxo-master-detail [enabled]="true" [template]="'detail'"></dxo-master-detail>
+  <div *dxTemplate="let info of 'detail'">
+    <div class="detail-container">
+      <div class="detail-item"><b>City:</b> {{info.data.location.city}}</div>
+      <div class="detail-item"><b>Street:</b> {{info.data.location.street.name}}</div>
+      <div class="detail-item"> <b>Сountry:</b> {{info.data.location.country}}</div>
+    </div>
+
+  </div>
+</dx-data-grid>
