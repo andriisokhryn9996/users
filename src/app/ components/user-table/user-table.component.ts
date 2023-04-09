@@ -13,29 +13,24 @@ export class UserTableComponent implements OnInit, OnDestroy{
 
   constructor(private userService: UserService) {
   }
-
-  ngOnInit() {
-    this.dataInitialize()
+  customizeColumns (columns: any) {
+    columns[0].width = 80;
   }
 
-  dataInitialize(){
-    this.userSubscription = this.userService.getUsers().subscribe(data => {
+  ngOnInit(): void {}
+
+  filterEmmit($event: any): void {
+    this.dataInitialize($event)
+  }
+
+  dataInitialize(x: string | undefined): void{
+    this.userSubscription = this.userService.getUsers(x).subscribe(data => {
       this.usersList = data.results
-      console.log(this.usersList)
     })
   }
 
   fullName(rowData: any): string{
     return `${rowData.name.first} ${rowData.name.last}`;
-  }
-
-  getPicture(rowData: any): string { //todo
-    return rowData.picture.large
-  }
-
-  filterEmmit($event: any): void {
-    console.log($event)
-    this.dataInitialize()
   }
 
   ngOnDestroy(): void {

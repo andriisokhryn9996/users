@@ -12,7 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { AboutComponent } from './ components/about/about.component';
 import {PersistanceService} from "./services/persistance.service";
 import { FilterComponent } from './ components/filter/filter.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
   { path: '', component: UserTableComponent },
@@ -36,7 +36,8 @@ const routes: Routes = [
     DxTemplateModule,
     DxBulletModule,
     DxTreeListModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [UserService, PersistanceService],
   bootstrap: [AppComponent],

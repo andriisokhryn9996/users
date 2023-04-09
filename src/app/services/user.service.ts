@@ -13,13 +13,9 @@ export class UserService {
   constructor(private http: HttpClient, private persistanceService: PersistanceService) {
   }
 
-  getUrlWithFilter(): string {
-    const gender = this.persistanceService.get('gender')
-    return gender ? `&gender=${gender}` : '&seed=test'
-  }
-  getUsers(): Observable<GetUserResponseInterface> {
-    // gender=male
-     const url = `${environment.apiUrl}?results=${environment.limit}${this.getUrlWithFilter()}`
+  getUsers(filter: string | undefined): Observable<GetUserResponseInterface> {
+     const url = `${environment.apiUrl}?results=${environment.limit}${filter ? `&${filter}` : ''}`
+      console.log(url)
      return this.http.get<GetUserResponseInterface>(url)
   }
 }

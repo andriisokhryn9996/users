@@ -1,10 +1,24 @@
 <p>user-table works!</p>
 <app-filter (filterEmmit)="filterEmmit($event)"></app-filter>
 
-<dx-data-grid [dataSource]="usersList" [showBorders]="true" [columnAutoWidth]="true">
+<dx-data-grid
+  [rowAlternationEnabled]="true"
+  [dataSource]="usersList"
+  [showBorders]="true"
+  [columnAutoWidth]="true"
+  [customizeColumns]="customizeColumns"
+>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
   <dxo-paging [pageSize]="25"></dxo-paging>
+
+  <dxi-column
+    dataField="Picture"
+    [allowFiltering]="false"
+    [allowSorting]="false"
+    cellTemplate="cellTemplate"
+  ></dxi-column>
   <dxi-column dataField="name" [calculateDisplayValue]="fullName"></dxi-column>
-  <dxi-column dataField="gender" dataType="number"></dxi-column>
+  <dxi-column dataField="gender"></dxi-column>
   <dxi-column dataField="cell"></dxi-column>
 
   <dxo-master-detail [enabled]="true" [template]="'detail'"></dxo-master-detail>
@@ -14,8 +28,11 @@
       <div class="detail-item"><b>Street:</b> {{info.data.location.street.name}}</div>
       <div class="detail-item"> <b>Сountry:</b> {{info.data.location.country}}</div>
     </div>
-
   </div>
-</dx-data-grid>
 
+  <div class="avatar-template" *dxTemplate="let data of 'cellTemplate'">
+    <img [src]="data.data.picture.large" />
+  </div>
+
+</dx-data-grid>
 
