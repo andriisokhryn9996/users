@@ -13,6 +13,7 @@ import {MockFilterDataInterface} from "../../types/mock-filter-data.interface";
 export class FilterComponent implements OnInit{
   @Output() filterEmmit = new EventEmitter();
   form!: FormGroup;
+  stringified: string | undefined
 
 
   genders!: MockFilterDataInterface[]
@@ -69,8 +70,14 @@ export class FilterComponent implements OnInit{
     parsed.nat = countriesParams.join(',') || undefined;
     parsed.gender = gendersParams.join(',') || undefined;
 
-    const stringified = queryString.stringify(parsed);
-    this.filterEmmit.emit(stringified)
+    this.stringified = queryString.stringify(parsed);
+    this.filterEmmit.emit(this.stringified)
+  }
+
+  resetAllFilters(): void{
+    this.filterEmmit.emit('')
+    this.initializeForm()
+    this.stringified = ''
   }
 
 }

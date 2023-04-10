@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {Subscription} from "rxjs";
+import {UserInterface} from "../../types/user.interface";
 
 @Component({
   selector: 'app-user-table',
@@ -9,7 +10,7 @@ import {Subscription} from "rxjs";
 })
 export class UserTableComponent implements OnInit, OnDestroy{
   userSubscription: Subscription | undefined
-  usersList: any[] = []
+  usersList: UserInterface[] = []
 
   constructor(private userService: UserService) {
   }

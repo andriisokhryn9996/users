@@ -1,11 +1,11 @@
-<div class="filter-block filter-block-title" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+<div class="filter-block filter-block-title px-4" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
   <h4 class="filter-title m-0">Filter</h4>
 </div>
 
 <div class="collapse show" id="collapseExample">
   <div class="card card-body">
     <form [formGroup]="form" (change)="onChangeForm()">
-      <div formGroupName="genders">
+      <div formGroupName="genders" class="p-2">
         <h6>Genders</h6>
         <div *ngFor="let gender of genders; let idx = index">
           <div class="form-check form-check-inline">
@@ -16,7 +16,7 @@
       </div>
       <hr>
 
-      <div formGroupName="countries" class="overflow-auto" style="max-height: 400px">
+      <div formGroupName="countries" class="overflow-auto p-2" style="max-height: 400px">
         <h6>Countries</h6>
         <div *ngFor="let control of countries; let idx = index">
           <div class="form-check form-check-inline">
@@ -26,5 +26,6 @@
         </div>
       </div>
     </form>
+    <button *ngIf="stringified" class="btn btn-dark my-2" (click)="resetAllFilters()">Reset</button>
   </div>
 </div>
