@@ -2,6 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PersistanceService} from "../../services/persistance.service";
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import queryString from 'query-string';
+import {MockFilterDataService} from "../../services/mock-filter-data.service";
+import {MockFilterDataInterface} from "../../types/mock-filter-data.interface";
 
 @Component({
   selector: 'app-filter',
@@ -10,47 +12,28 @@ import queryString from 'query-string';
 })
 export class FilterComponent implements OnInit{
   @Output() filterEmmit = new EventEmitter();
-  form: FormGroup;
+  form!: FormGroup;
 
 
-  genders = [
-    {value: 'male', name: 'Male', checked: false},
-    {value: 'female', name: 'Female', checked: false}
-  ]
-  countries = [
-    { value: 'AU', name: 'Australia', checked: false },
-    { value: 'BR', name: 'Brazil', checked: false },
-    { value: 'CA', name: 'Canada', checked: false },
-    { value: 'CH', name: 'Switzerland', checked: false },
-    { value: 'DE', name: 'Germany', checked: false },
-    { value: 'DK', name: 'Denmark', checked: false },
-    { value: 'ES', name: 'Spain', checked: false },
-    { value: 'FI', name: 'Finland', checked: false },
-    { value: 'FR', name: 'France', checked: false },
-    { value: 'GB', name: 'United Kingdom', checked: false },
-    { value: 'IE', name: 'Ireland', checked: false },
-    { value: 'IN', name: 'India', checked: false },
-    { value: 'IR', name: 'Iran', checked: false },
-    { value: 'MX', name: 'Mexico', checked: false },
-    { value: 'NL', name: 'Netherlands', checked: false },
-    { value: 'NO', name: 'Norway', checked: false },
-    { value: 'NZ', name: 'New Zealand', checked: false },
-    { value: 'RS', name: 'Serbia', checked: false },
-    { value: 'TR', name: 'Turkey', checked: false },
-    { value: 'UA', name: 'Ukraine', checked: false },
-    { value: 'US', name: 'United States of America', checked: false },
-  ];
+  genders!: MockFilterDataInterface[]
+  countries!: MockFilterDataInterface[]
 
-  constructor( private persistanceService: PersistanceService) {
+  constructor( private persistanceService: PersistanceService, private mockService: MockFilterDataService) {}
+
+  ngOnInit(): void {
+    this.countries = this.mockService.getCountries()
+    this.genders = this.mockService.getGenders()
+
+    this.initializeForm()
+    this.initializeValue()
+    this.parseParamForRequest()
+  }
+
+  initializeForm(){
     this.form = new FormGroup({
       genders: new FormArray(this.genders.map(e => new FormControl(false))),
       countries: new FormArray(this.countries.map(e => new FormControl(false)))
     });
-  }
-
-  ngOnInit(): void {
-    this.initializeValue()
-    this.parseParamForRequest()
   }
 
   initializeValue(): void {
