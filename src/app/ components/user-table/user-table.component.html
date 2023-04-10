@@ -1,38 +1,41 @@
 <p>user-table works!</p>
-<app-filter (filterEmmit)="filterEmmit($event)"></app-filter>
+<div class="row">
+  <app-filter class="col-md-3" (filterEmmit)="filterEmmit($event)"></app-filter>
 
-<dx-data-grid
-  [rowAlternationEnabled]="true"
-  [dataSource]="usersList"
-  [showBorders]="true"
-  [columnAutoWidth]="true"
-  [customizeColumns]="customizeColumns"
->
-  <dxo-filter-row [visible]="true"></dxo-filter-row>
-  <dxo-paging [pageSize]="25"></dxo-paging>
+  <dx-data-grid
+    class="col-md-9"
+    [rowAlternationEnabled]="true"
+    [dataSource]="usersList"
+    [showBorders]="true"
+    [columnAutoWidth]="true"
+    [customizeColumns]="customizeColumns"
+  >
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-paging [pageSize]="25"></dxo-paging>
 
-  <dxi-column
-    dataField="Picture"
-    [allowFiltering]="false"
-    [allowSorting]="false"
-    cellTemplate="cellTemplate"
-  ></dxi-column>
-  <dxi-column dataField="name" [calculateDisplayValue]="fullName"></dxi-column>
-  <dxi-column dataField="gender"></dxi-column>
-  <dxi-column dataField="cell"></dxi-column>
+    <dxi-column
+      dataField="Picture"
+      [allowFiltering]="false"
+      [allowSorting]="false"
+      cellTemplate="cellTemplate"
+    ></dxi-column>
+    <dxi-column dataField="name" [calculateDisplayValue]="fullName"></dxi-column>
+    <dxi-column dataField="gender"></dxi-column>
+    <dxi-column dataField="cell"></dxi-column>
 
-  <dxo-master-detail [enabled]="true" [template]="'detail'"></dxo-master-detail>
-  <div *dxTemplate="let info of 'detail'">
-    <div class="detail-container">
-      <div class="detail-item"><b>City:</b> {{info.data.location.city}}</div>
-      <div class="detail-item"><b>Street:</b> {{info.data.location.street.name}}</div>
-      <div class="detail-item"> <b>Сountry:</b> {{info.data.location.country}}</div>
+    <dxo-master-detail [enabled]="true" [template]="'detail'"></dxo-master-detail>
+    <div *dxTemplate="let info of 'detail'">
+      <div class="detail-container">
+        <div class="detail-item"><b>City:</b> {{info.data.location.city}}</div>
+        <div class="detail-item"><b>Street:</b> {{info.data.location.street.name}}</div>
+        <div class="detail-item"> <b>Сountry:</b> {{info.data.location.country}}</div>
+      </div>
     </div>
-  </div>
 
-  <div class="avatar-template" *dxTemplate="let data of 'cellTemplate'">
-    <img [src]="data.data.picture.large" />
-  </div>
+    <div class="avatar-template" *dxTemplate="let data of 'cellTemplate'">
+      <img [src]="data.data.picture.large" />
+    </div>
 
-</dx-data-grid>
+  </dx-data-grid>
+</div>
 

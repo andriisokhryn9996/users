@@ -13,6 +13,7 @@ import { AboutComponent } from './ components/about/about.component';
 import {PersistanceService} from "./services/persistance.service";
 import { FilterComponent } from './ components/filter/filter.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HeaderComponent } from './ components/header/header.component';
 
 const routes: Routes = [
   { path: '', component: UserTableComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
     AppComponent,
     UserTableComponent,
     AboutComponent,
-    FilterComponent
+    FilterComponent,
+    HeaderComponent
   ],
   imports: [
     HttpClientModule,
